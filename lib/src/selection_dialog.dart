@@ -13,7 +13,7 @@ class SelectionDialog extends StatefulWidget {
   final BoxDecoration? boxDecoration;
   final WidgetBuilder? emptySearchBuilder;
   final bool? showFlag;
-  final double flagWidth;
+  final double flagWidth, flagHeight;
   final Decoration? flagDecoration;
   final Size? size;
   final bool hideSearch;
@@ -46,13 +46,15 @@ class SelectionDialog extends StatefulWidget {
     this.showFlag,
     this.flagDecoration,
     this.flagWidth = 32,
+    this.flagHeight = 32,
     this.size,
     this.backgroundColor,
     this.barrierColor,
     this.hideSearch = false,
     this.hideCloseIcon = false,
     this.closeIcon,
-    this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.dialogItemPadding =
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
   })  : searchDecoration = searchDecoration.prefixIcon == null
             ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search))
@@ -93,12 +95,12 @@ class _SelectionDialogState extends State<SelectionDialog> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               if (!widget.hideCloseIcon)
-              IconButton(
-                padding: const EdgeInsets.all(0),
-                iconSize: 20,
-                icon: widget.closeIcon!,
-                onPressed: () => Navigator.pop(context),
-              ),
+                IconButton(
+                  padding: const EdgeInsets.all(0),
+                  iconSize: 20,
+                  icon: widget.closeIcon!,
+                  onPressed: () => Navigator.pop(context),
+                ),
               if (!widget.hideSearch)
                 Padding(
                   padding: widget.searchPadding,
@@ -116,34 +118,28 @@ class _SelectionDialogState extends State<SelectionDialog> {
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ...widget.favoriteElements.map(
-                                (f) => InkWell(
+                              ...widget.favoriteElements.map((f) => InkWell(
                                   onTap: () {
                                     _selectItem(f);
                                   },
                                   child: Padding(
                                     padding: widget.dialogItemPadding,
                                     child: _buildOption(f),
-                                  )
-                                )
-                              ),
+                                  ))),
                               const Divider(),
                             ],
                           ),
                     if (filteredElements.isEmpty)
                       _buildEmptySearchWidget(context)
                     else
-                      ...filteredElements.map(
-                        (e) => InkWell(
+                      ...filteredElements.map((e) => InkWell(
                           onTap: () {
                             _selectItem(e);
                           },
                           child: Padding(
-                          padding: widget.dialogItemPadding,
+                            padding: widget.dialogItemPadding,
                             child: _buildOption(e),
-                          )
-                        )
-                      ),
+                          ))),
                   ],
                 ),
               ),
@@ -169,6 +165,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   e.flagUri!,
                   package: 'country_code_picker',
                   width: widget.flagWidth,
+                  height: widget.flagHeight,
                 ),
               ),
             ),

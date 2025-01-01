@@ -30,6 +30,9 @@ class CountryCodePicker extends StatefulWidget {
   final TextOverflow textOverflow;
   final Icon closeIcon;
 
+  /// DropDown widget
+  final Widget? dropDownWidget;
+
   /// Barrier color of ModalBottomSheet
   final Color? barrierColor;
 
@@ -69,6 +72,7 @@ class CountryCodePicker extends StatefulWidget {
 
   /// Width of the flag images
   final double flagWidth;
+  final double flagHeight;
 
   /// Use this property to change the order of the options
   final Comparator<CountryCode>? comparator;
@@ -95,10 +99,12 @@ class CountryCodePicker extends StatefulWidget {
 
   const CountryCodePicker({
     this.onChanged,
+    
     this.onInit,
     this.initialSelection,
     this.favorite = const [],
     this.textStyle,
+    this.dropDownWidget,
     this.padding = const EdgeInsets.all(8.0),
     this.margin,
     this.showCountryOnly = false,
@@ -115,6 +121,7 @@ class CountryCodePicker extends StatefulWidget {
     this.flagDecoration,
     this.builder,
     this.flagWidth = 32.0,
+    this.flagHeight=32.0,
     this.enabled = true,
     this.textOverflow = TextOverflow.ellipsis,
     this.barrierColor,
@@ -204,6 +211,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                     child: Image.asset(
                       selectedItem!.flagUri!,
                       package: 'country_code_picker',
+                      height: widget.flagHeight,
                       width: widget.flagWidth,
                     ),
                   ),
@@ -221,19 +229,20 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                   ),
                 ),
               if (widget.showDropDownButton)
-                Flexible(
-                  flex: widget.alignLeft ? 0 : 1,
-                  fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
-                  child: Padding(
-                      padding: (widget.alignLeft
-                          ? const EdgeInsets.only(right: 16.0, left: 8.0)
-                          : const EdgeInsets.only(right: 16.0)),
-                      child: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.grey,
-                        size: widget.flagWidth,
-                      )),
-                ),
+                dropDownWidget ??
+                    Flexible(
+                      flex: widget.alignLeft ? 0 : 1,
+                      fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
+                      child: Padding(
+                          padding: (widget.alignLeft
+                              ? const EdgeInsets.only(right: 16.0, left: 8.0)
+                              : const EdgeInsets.only(right: 16.0)),
+                          child: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.grey,
+                            size: widget.flagWidth,
+                          )),
+                    ),
             ],
           ),
         ),
@@ -315,6 +324,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
             boxDecoration: widget.boxDecoration,
             showFlag: widget.showFlagDialog ?? widget.showFlag,
             flagWidth: widget.flagWidth,
+            
             size: widget.dialogSize,
             backgroundColor: widget.dialogBackgroundColor,
             barrierColor: widget.barrierColor,
