@@ -229,7 +229,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                   ),
                 ),
               if (widget.showDropDownButton)
-                dropDownWidget ??
+               widget. dropDownWidget ??
                     Flexible(
                       flex: widget.alignLeft ? 0 : 1,
                       fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
