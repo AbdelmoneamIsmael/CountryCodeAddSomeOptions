@@ -3,7 +3,6 @@ const List<Map<String, String>> codes = [
   {"name": "مصر‎", "code": "EG", "iso3Code": "EGY", "dial_code": "+20"},
   {"name": "ایران", "code": "IR", "iso3Code": "IRN", "dial_code": "+98"},
   {"name": "العراق", "code": "IQ", "iso3Code": "IRQ", "dial_code": "+964"},
-  {"name": "ישראל", "code": "IL", "iso3Code": "ISR", "dial_code": "+972"},
   {"name": "الأردن", "code": "JO", "iso3Code": "JOR", "dial_code": "+962"},
   {"name": "الكويت", "code": "KW", "iso3Code": "KWT", "dial_code": "+965"},
   {"name": "لبنان", "code": "LB", "iso3Code": "LBN", "dial_code": "+961"},
