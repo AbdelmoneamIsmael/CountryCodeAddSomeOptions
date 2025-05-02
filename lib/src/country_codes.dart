@@ -16,7 +16,6 @@ const List<Map<String, String>> codes = [
     "iso3Code": "SAU",
     "dial_code": "+966"
   },
-  {"name": "سوريا", "code": "SY", "iso3Code": "SYR", "dial_code": "+963"},
   {"name": "تونس", "code": "TN", "iso3Code": "TUN", "dial_code": "+216"},
   {"name": "Türkiye", "code": "TR", "iso3Code": "TUR", "dial_code": "+90"},
   {"name": "اليَمَن", "code": "YE", "iso3Code": "YEM", "dial_code": "+967"}
